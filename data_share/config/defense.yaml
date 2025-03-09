@@ -1,0 +1,64 @@
+base: "data/config/base.yaml"
+
+global:
+  project_path: "/mnt/data/ZY/IPA"
+
+dataset:
+  meta: "data/config/meta_eval.yaml"
+
+object:
+  obj_path: "data/objects/man_512/man.obj"
+
+stickers:
+  mask:
+    half_sleeve: "data/objects/man_512/mask_half_sleeve.jpg"
+    jeans: "data/objects/man_512/mask_jeans.jpg"
+
+attack:
+  optimizer:
+    clip_min: -0.1
+    clip_max: 0.1
+
+defense:
+  # Support Types: ["BitDepth", "MedianBlur", "GaussianBlur", "JpegCompression"]
+  type: "MedianBlur"
+  bit_depth:
+    r_bits: 1
+    g_bits: 1
+    b_bits: 1
+  median_blur:
+    kernel_size: 33
+  gaussian_blur:
+    kernel_size: 47
+    sigma: 0
+  jpeg_compression:
+    quality: 10
+
+enable:
+  object: true
+  stickers: true
+  scenario: true
+  renderer: true
+  defense: true
+  smoke: true
+  logger: true
+
+eval:
+  gn_enable: false
+  texture_hls_path: "data/results/train/2022-04-29-14-40/visualization/adv_texture/00398_002.31178_adv_texture_hls.pth"
+  raw_eval_path: "data/results/eval/defense/raw"
+  attack_eval_path: "data/results/eval/defense/perturb"
+  gn_eval_path: "data/results/eval/defense/gn"
+  dataset_raw_path: "data/results/eval/attack/raw"
+
+logger:
+  common:
+      confidence_threshold: 0.25
+  local:
+    vis_offline: true
+    off_dir: "data/results/eval/defense"
+    off_content: ["scenario", "render_scenario", "purifier_image", "detection_2d", "detection_3d"]
+
+
+
+

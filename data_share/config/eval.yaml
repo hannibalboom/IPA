@@ -1,0 +1,48 @@
+base: "data/config/base.yaml"
+
+global:
+  project_path: "/mnt/data/ZY/IPA"
+
+dataset:
+  meta: "data/config/meta_train.yaml"
+
+object:
+  obj_path: "data/objects/man_512/man.obj"
+
+stickers:
+  mask:
+    half_sleeve: "data/objects/man_512/mask_half_sleeve.jpg"
+    jeans: "data/objects/man_512/mask_jeans.jpg"
+
+attack:
+  optimizer:
+    clip_min: -0.1
+    clip_max: 0.1
+
+enable:
+  object: true
+  stickers: true
+  scenario: true
+  renderer: true
+  smoke: true
+  logger: true
+
+eval:
+  gn_enable: true
+  texture_hls_path: "data/results/train/2022-04-29-14-40/visualization/adv_texture/00398_002.31178_adv_texture_hls.pth"
+  raw_eval_path: "data/results/eval/attack/raw"
+  attack_eval_path: "data/results/eval/attack/perturb"
+  gn_eval_path: "data/results/eval/attack/gn"
+
+
+logger:
+  common:
+      confidence_threshold: 0.25
+  local:
+    vis_offline: true
+    off_dir: "data/results/eval/attack"
+    off_content: ["scenario", "render_scenario", "detection_2d", "detection_3d"]
+
+
+
+

@@ -1,0 +1,40 @@
+base: "data/config/base.yaml"
+
+global:
+  project_path: "/home/dingxl/workspace/smoke-adv/"
+  device: "cuda:0"
+
+#dataset:
+#  meta: "test/test_pipe/meta.yaml"
+
+enable:
+  object: true
+  stickers: true
+  scenario: true
+  renderer: true
+  smoke: true
+  attack: false
+  logger: true
+
+stickers:
+  # Stickers size & position in texture image.
+  size: [ 8192, 8192 ]
+  position: [ 0, 0 ]
+  mask:
+    half_sleeve: "data/objects/man/mask_half_sleeve.jpg"
+#    jeans: "data/objects/man/mask_jeans.jpg"
+
+attack:
+  optimizer:
+    alpha: 0.0002
+    clip_min: -0.5
+    clip_max: 0.5
+
+logger:
+  common:
+      confidence_threshold: 0.25
+  local:
+    vis_plt: true
+    plt_content: ["scenario", "texture", "render_bg", "render_scenario", "detection_2d", "detection_3d"]
+
+

@@ -1,0 +1,34 @@
+base: "data/config/base.yaml"
+
+global:
+  project_path: "/home/dingxl/nfs/workspace/smoke-adv/"
+  device: "cuda:0"
+
+dataset:
+  meta: "evaluate/test_pipe/meta.yaml"
+#  meta: "data/config/meta_eval.yaml"
+
+enable:
+  object: true
+  stickers: false
+  scenario: true
+  renderer: true
+  smoke: true
+  loss: false
+  attack: false
+  logger: true
+
+logger:
+  common:
+      confidence_threshold: 0.1
+  local:
+    vis_plt: true
+#    plt_content: ["scenario", "render_bg", "render_scenario", "detection_2d", "detection_3d"]
+    plt_content: ["detection_2d"]
+    vis_offline: false
+    off_dir: "data/results/test/"
+    off_content: ["render_scenario", "detection_2d", "detection_3d"]
+    patch_save_frequency: 1
+
+
+

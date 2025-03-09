@@ -1,0 +1,38 @@
+base: "data/config/base.yaml"
+
+global:
+  project_path: "/home/dingxl/nfs/workspace/smoke-adv/"
+  device: "cuda:0"
+
+dataset:
+  meta: "evaluate/test_pipe/meta.yaml"
+#  meta: "data/config/meta_eval.yaml"
+
+object:
+  obj_path: "data/objects/man/man.obj"
+  # model size(m) [x, y, z] = [w, h, l]
+  size: [0.55, 1.86, 0.48]
+  # using the axis from camera to 3d object as z-axis instead of one in the world coordinate
+  rotation_relative: true
+
+enable:
+  object: true
+  stickers: false
+  scenario: true
+  renderer: true
+  loss: false
+  smoke: false
+  attack: false
+  logger: true
+
+logger:
+  local:
+    vis_plt: true
+#    plt_content: ["scenario", "render_bg", "render_scenario"]
+    plt_content: ["render_scenario"]
+    vis_offline: false
+    off_dir: "data/results/test/"
+    off_content: [ "render_bg"]
+    patch_save_frequency: 1
+
+

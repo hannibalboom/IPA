@@ -1,0 +1,72 @@
+base: "data_share/config/base.yaml"
+
+global:
+  project_path: "/mnt/data/ZY/IPA"
+enable:
+  object: true
+  stickers: true
+  scenario: true
+  renderer: true
+  smoke: true
+  loss: true
+  attack: true
+  logger: true
+
+dataset:
+  meta: "data_share/config/meta_train.yaml"
+  random:
+    frequency: 1
+    # random rotation
+    rotation:
+      enable: true
+      range: [ 0, 360 ]
+      times: 1
+
+object:
+  obj_path: "data_share/objects/man_512/man.obj"
+
+stickers:
+  mask:
+    half_sleeve: "data_share/objects/man_512/mask_half_sleeve.jpg"
+    jeans: "data_share/objects/man_512/mask_jeans.jpg"
+
+
+attack:
+  loss:
+    type: "3d_weighted_score"
+#    type: "3d_weighted_y"
+  optimizer:
+    alpha: 0.15
+    clip_min: -0.1
+    clip_max: 0.1
+
+logger:
+  common:
+      confidence_threshold: 0.25
+  comet:
+    enable: true
+    test: false
+    vis_content: []
+  local:
+#    vis_plt: true
+    # Support types: texture, scenario, render_bg, render_scenario, detection_3d, detection_2d.
+#    plt_content: [ "texture" ]
+    vis_offline: true
+    off_content: ["adv_texture", "texture", "detection_2d", "detection_3d"]
+#    off_content: ["adv_texture", "texture"]
+    patch_save_frequency: 10
+    off_dir: "data_local/results/train"
+
+# Use for comet.ml experiment results filter, no params are controlled
+tags:
+  scenario_num: 20
+  position_num: 20
+  texture: 512
+  target: []
+  loss_type: "3d_weighted_score with big y sigma"
+  step_type: "softmax"
+  note: "36 angle from 0-360, train 20 times"
+
+
+
+
